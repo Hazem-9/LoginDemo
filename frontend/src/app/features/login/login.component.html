@@ -1,0 +1,24 @@
+<div class="login-page">
+  <form class="login-card" [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Login</h1>
+    <p class="hint">Demo users: admin/admin123 or user/user123</p>
+
+    <label>Username</label>
+    <input type="text" formControlName="username" placeholder="admin" />
+    <small *ngIf="form.controls.username.touched && form.controls.username.invalid">
+      Username is required
+    </small>
+
+    <label>Password</label>
+    <input type="password" formControlName="password" placeholder="admin123" />
+    <small *ngIf="form.controls.password.touched && form.controls.password.invalid">
+      Password is required and must be at least 6 characters
+    </small>
+
+    <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
+  </form>
+</div>
